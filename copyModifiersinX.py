@@ -14,6 +14,8 @@ def main(context):
                     context.scene.objects.active.modifiers['Array'].use_relative_offset = False
                     context.scene.objects.active.modifiers["Array"].use_constant_offset = True
                     context.scene.objects.active.modifiers['Array'].constant_offset_displace = (parent_ob.dimensions[0]/2, 0.0,0.0)
+                else if mod.type != 'ARRAY':
+                    bpy.ops.object.modifier_add(type=mod.type)
 
 
 class EasyVis(bpy.types.Operator):
