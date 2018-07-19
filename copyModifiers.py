@@ -39,6 +39,7 @@ def main(context):
                         #copy properties to active object
                         for prop in properties:
                             setattr(child_mods,prop,getattr(parent_mods,prop))
+    context.scene.objects.active = parent_ob
                             
                     
 
