@@ -2,15 +2,20 @@ import bpy
 
 '''Automates adding material to objects to work with Substance Painter'''
 def main(context):
-    #Grab objects in scene that are of type 'MESH' and has no materials linked to it
-    objects = [ob for ob in context.scene.objects if (ob.type == 'MESH' and not ob.data.materials)]
+    #Grab objects in scene that are of type 'MESH' 
+    objects = [ob for ob in context.scene.objects if (ob.type == 'MESH')]
     
+    #Remove all currently assigned materials
+    for ob in objects:
+        context.scene.objects.active= ob
+        if ob.data.materials:
+            ob.data.materials.clear()
+            
     #Assign new material to object with same name as object
     for ob in objects:
         context.scene.objects.active= ob
-        if not ob.data.materials:
-            mat = bpy.data.materials.new(name=ob.name)
-            ob.data.materials.append(mat)
+        mat = bpy.data.materials.new(name=ob.name)
+        ob.data.materials.append(mat)
 
 class addSubstanceMat(bpy.types.Operator):
     """Automates adding materials to each object, using same name as object"""
