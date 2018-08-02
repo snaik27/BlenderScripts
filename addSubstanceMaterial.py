@@ -3,7 +3,7 @@ import bpy
 '''Automates adding material to objects to work with Substance Painter'''
 def main(context):
     #Grab objects in scene that are of type 'MESH' 
-    objects = [ob for ob in context.scene.objects if (ob.type == 'MESH')]
+    objects = [ob for ob in context.selected_objects if (ob.type == 'MESH')]
     
     #Remove all currently assigned materials
     for ob in objects:
